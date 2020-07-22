@@ -1,0 +1,1 @@
+[{"name": "sdbusplus", "version": "1.0.0", "compile_args": ["-I/usr/local/include"], "link_args": ["/usr/local/lib/x86_64-linux-gnu/libsdbusplus.so", "/lib/x86_64-linux-gnu/libsystemd.so"]}]
