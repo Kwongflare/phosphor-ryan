@@ -1,8 +1,0 @@
-[
-  {
-    "directory": "/home/rchow/code/phosphor-ryan/build",
-    "command": "c++ -Iphosphor-ryan.p -I/usr/local/include -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -MD -MQ phosphor-ryan.p/ryan.cpp.o -MF phosphor-ryan.p/ryan.cpp.o.d -o phosphor-ryan.p/ryan.cpp.o -c ../ryan.cpp",
-    "file": "../ryan.cpp",
-    "output": "phosphor-ryan.p/ryan.cpp.o"
-  }
-]
