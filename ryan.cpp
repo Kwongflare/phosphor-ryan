@@ -31,9 +31,16 @@ int main( int argc, char *argv[] )
     auto b = bus::new_default_system();
     printf("Bus found\n");
     auto m = b.new_method_call(argv[1], argv[2], argv[3], argv[4]);
- //   auto m =
- //       b.new_method_call("org.freedesktop.DBus", "/org/freedesktop/DBus",
- //               "org.freedesktop.DBus", "ListNames");
+
+    printf("%d\n", argc);
+    for (uint8_t i = REQUIRED_NUM_ARGS; i < (argc-1); i++)
+    {
+        printf("appended arg \n");
+        m.append(argv[i]);
+    }
+    //   auto m =
+    //       b.new_method_call("org.freedesktop.DBus", "/org/freedesktop/DBus",
+    //               "org.freedesktop.DBus", "ListNames");
     printf("Method call created\n");
 
     auto reply = b.call(m);
