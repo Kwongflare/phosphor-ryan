@@ -33,11 +33,9 @@ int main( int argc, char *argv[] )
     auto m = b.new_method_call(argv[1], argv[2], argv[3], argv[4]);
 
     printf("%d\n", argc);
-    for (uint8_t i = REQUIRED_NUM_ARGS; i < (argc-1); i++)
-    {
-        printf("appended arg \n");
-        m.append(argv[i]);
-    }
+    
+    m.append("xyz.openbmc_project.State.Chassis", "CurrentPowerStatus");
+    
     //   auto m =
     //       b.new_method_call("org.freedesktop.DBus", "/org/freedesktop/DBus",
     //               "org.freedesktop.DBus", "ListNames");
