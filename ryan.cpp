@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/message/append.hpp>
+#include <variant>
 
 /** An example dbus client application.
  **  Calls org.freedesktop.login1's ListUsers interface to find all active
@@ -44,13 +45,11 @@ int main( int argc, char *argv[] )
     
     printf("Method %s\n", reply.is_method_error() ? "failed" : "succeeded");
     printf("sender: %s\n", reply.get_sender());
-
-    std::vector<std::string> names;
-    int a;
+    
+    std::variant<std::string> a;
     reply.read(a);
-
-    printf("reply read: %d\n", a);
-
+    
+    printf("%s\n", std::get<std::string>(a).c_str());
 
     return ERR_NONE;
 
