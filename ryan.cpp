@@ -34,8 +34,10 @@ int main( int argc, char *argv[] )
 
     printf("%d\n", argc);
     
-    m.append("xyz.openbmc_project.State.Chassis", "CurrentPowerState");
-    
+    if (argc > 5)
+    {
+        m.append(argv[5], argv[6]);
+    }    
     //   auto m =
     //       b.new_method_call("org.freedesktop.DBus", "/org/freedesktop/DBus",
     //               "org.freedesktop.DBus", "ListNames");
