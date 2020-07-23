@@ -41,6 +41,9 @@ int main( int argc, char *argv[] )
 
     auto reply = b.call(m);
     printf("Method called \n");
+    
+    printf("Method %s\n", reply.is_method_error() ? "failed" : "succeeded");
+    printf("sender: %s\n", reply.get_sender());
 
     std::vector<std::string> names;
     int a;

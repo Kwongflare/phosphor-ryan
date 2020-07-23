@@ -1,0 +1,87 @@
+Arg1: org.freedesktop.DBus
+Arg2: /org/freedesktop/DBus
+Arg3: org.freedesktop.DBus
+Arg4: ListNames
+Bus found
+5
+Method call created
+Method called 
+org.freedesktop.DBus
+:1.106
+:1.7
+org.freedesktop.timesync1
+:1.9
+org.freedesktop.systemd1
+org.freedesktop.ModemManager1
+org.freedesktop.NetworkManager
+org.freedesktop.resolve1
+org.freedesktop.Accounts
+org.freedesktop.RealtimeKit1
+:1.60
+:1.61
+:1.62
+:1.40
+:1.63
+:1.41
+:1.64
+:1.42
+org.freedesktop.PolicyKit1
+:1.65
+:1.43
+:1.21
+:1.66
+:1.44
+:1.22
+:1.45
+:1.23
+:1.46
+net.hadess.SwitcherooControl
+:1.47
+:1.26
+com.redhat.NewPrinterNotification
+:1.27
+:1.28
+:1.29
+com.redhat.PrinterDriversInstaller
+org.gnome.DisplayManager
+org.freedesktop.Avahi
+org.freedesktop.UDisks2
+fi.w1.wpa_supplicant1
+org.freedesktop.fwupd
+org.freedesktop.login1
+:1.72
+org.freedesktop.ColorManager
+:1.73
+:1.52
+:1.75
+org.freedesktop.thermald
+:1.31
+:1.76
+:1.54
+:1.10
+:1.99
+:1.55
+:1.11
+:1.56
+org.freedesktop.UPower
+:1.34
+:1.57
+:1.0
+:1.13
+:1.35
+:1.58
+:1.1
+:1.14
+:1.36
+:1.59
+:1.37
+:1.2
+:1.15
+:1.3
+:1.16
+:1.39
+:1.4
+:1.17
+:1.5
+:1.18
+:1.6
