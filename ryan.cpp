@@ -23,17 +23,15 @@ int main( int argc, char *argv[] )
         return ERR_TOO_FEW_ARGS;
     }
 
-   printf("Arg1: %s\n", argv[1]);
-   printf("Arg2: %s\n", argv[2]);
-   printf("Arg3: %s\n", argv[3]);
-   printf("Arg4: %s\n", argv[4]);
+    printf("Arg1: %s\n", argv[1]);
+    printf("Arg2: %s\n", argv[2]);
+    printf("Arg3: %s\n", argv[3]);
+    printf("Arg4: %s\n", argv[4]);
 
     auto b = bus::new_default_system();
     printf("Bus found\n");
     auto m = b.new_method_call(argv[1], argv[2], argv[3], argv[4]);
 
-    printf("%d\n", argc);
-    
     if (argc > 5)
     {
         m.append(argv[5], argv[6]);
@@ -45,11 +43,11 @@ int main( int argc, char *argv[] )
 
     printf("Attempting to read response \n");
     std::string name;
-    reply.read(name);
-    
+    //reply.read(name);
+
     printf("Response read \n");
-    
-        printf("%s\n", std::string(name).c_str());
+
+    printf("%s\n", std::string(name).c_str());
 
     return ERR_NONE;
 
