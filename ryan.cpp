@@ -32,15 +32,11 @@ int main( int argc, char *argv[] )
     printf("Bus found\n");
     auto m = b.new_method_call(argv[1], argv[2], argv[3], argv[4]);
 
-    printf("%d\n", argc);
-    for (uint8_t i = REQUIRED_NUM_ARGS; i < (argc-1); i++)
+    if (argc > 5)
     {
-        printf("appended arg \n");
-        m.append(argv[i]);
+        m.append(argv[5], argv[6]);
     }
-    //   auto m =
-    //       b.new_method_call("org.freedesktop.DBus", "/org/freedesktop/DBus",
-    //               "org.freedesktop.DBus", "ListNames");
+
     printf("Method call created\n");
 
     auto reply = b.call(m);
@@ -48,6 +44,8 @@ int main( int argc, char *argv[] )
 
     std::vector<std::string> names;
     reply.read(names);
+
+    printf("reply read \n");
 
     for (auto& name : names)
     {
