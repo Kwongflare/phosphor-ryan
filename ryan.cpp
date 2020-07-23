@@ -46,9 +46,12 @@ int main( int argc, char *argv[] )
     auto reply = b.call(m);
     printf("Method called \n");
 
+    printf("Attempting to read response \n");
     std::vector<std::string> names;
     reply.read(names);
-
+    
+    printf("Response read \n");
+    
     for (auto& name : names)
     {
         printf("%s\n", std::string(name).c_str());
