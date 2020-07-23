@@ -43,14 +43,11 @@ int main( int argc, char *argv[] )
     printf("Method called \n");
 
     std::vector<std::string> names;
-    reply.read(names);
+    int a;
+    reply.read(a);
 
-    printf("reply read \n");
+    printf("reply read: %d\n", a);
 
-    for (auto& name : names)
-    {
-        printf("%s\n", std::string(name).c_str());
-    }
 
     return ERR_NONE;
 
