@@ -34,7 +34,7 @@ int main( int argc, char *argv[] )
 
     printf("%d\n", argc);
     
-    m.append("xyz.openbmc_project.State.Chassis", "CurrentPowerStatus");
+    m.append("xyz.openbmc_project.State.Chassis", "CurrentPowerState");
     
     //   auto m =
     //       b.new_method_call("org.freedesktop.DBus", "/org/freedesktop/DBus",
