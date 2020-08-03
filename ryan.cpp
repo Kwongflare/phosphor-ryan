@@ -3,6 +3,7 @@
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/message/append.hpp>
 #include <variant>
+#include <fstream>
 
 /** An example dbus client application.
  **  Calls org.freedesktop.login1's ListUsers interface to find all active
@@ -24,10 +25,13 @@ int main( int argc, char *argv[] )
         return ERR_TOO_FEW_ARGS;
     }
 
-   printf("Arg1: %s\n", argv[1]);
-   printf("Arg2: %s\n", argv[2]);
-   printf("Arg3: %s\n", argv[3]);
-   printf("Arg4: %s\n", argv[4]);
+    const char *path = "/var/log/phosphor-ryan.txt";
+    std::ofstream file(path);
+
+    printf("Arg1: %s\n", argv[1]);
+    printf("Arg2: %s\n", argv[2]);
+    printf("Arg3: %s\n", argv[3]);
+    printf("Arg4: %s\n", argv[4]);
 
     auto b = bus::new_default_system();
     printf("Bus found\n");
@@ -42,14 +46,19 @@ int main( int argc, char *argv[] )
 
     auto reply = b.call(m);
     printf("Method called \n");
-    
+
     printf("Method %s\n", reply.is_method_error() ? "failed" : "succeeded");
     printf("sender: %s\n", reply.get_sender());
-    
-    std::variant<std::string> a;
+
+    std::variant<double> a;
     reply.read(a);
+
+    printf("%f\n", std::get<double>(a));
     
-    printf("%s\n", std::get<std::string>(a).c_str());
+    char buff[100];
+    snprintf(buff, sizeof(buff), "%s: %s - %f", argv[5], argv[6], std::get<double>(a));
+    std::string data = buff;
+    file << buff;
 
     return ERR_NONE;
 
