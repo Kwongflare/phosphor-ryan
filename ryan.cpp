@@ -81,14 +81,8 @@ std::string get_time()
 }
 
 
-int main( int argc, char *argv[] )
+int main()
 {
-
-    if (argc < REQUIRED_NUM_ARGS)
-    {
-        printf("Too few arguments\n");
-        return ERR_TOO_FEW_ARGS;
-    }
     map<int, string> adc_map;
     adc_map.insert(pair<int, string>(0, ADCS_VOL_3_3V_AUX));
     adc_map.insert(pair<int, string>(1, ADCS_VOL_5V_AUX));
@@ -112,21 +106,16 @@ int main( int argc, char *argv[] )
 
     const char *path = "/var/log/phosphor-ryan.txt";
     std::ofstream file(path);
-
-    printf("Arg1: %s\n", argv[1]);
-    printf("Arg2: %s\n", argv[2]);
-    printf("Arg3: %s\n", argv[3]);
-    printf("Arg4: %s\n", argv[4]);
-
+    
     auto b = bus::new_default_system();
     printf("Bus found\n");
-    auto m = b.new_method_call(argv[1], argv[2], argv[3], argv[4]);
 
     for (itr = adc_map.begin(); itr != adc_map.end(); itr++)
     {
         auto m = b.new_method_call(ADC_SENSOR_SERVICE, itr->second.c_str(),
                 DBUS_PROPERTIES_INTF, PROPERTIES_GET);
         m.append(PHOSPHOR_SENSOR_VAL_INTF, "Value");
+        printf("message created\n");
         auto reply = b.call(m);
         std::variant<double> a;
         reply.read(a);
