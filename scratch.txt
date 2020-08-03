@@ -1,0 +1,1 @@
+phosphor-ryan xyz.openbmc_project.ADCSensor /xyz/openbmc_project/sensors/voltage/VOL_CPU0_VCORE org.freedesktop.DBus.Properties Get xyz.openbmc_project.Sensor.Value Value
