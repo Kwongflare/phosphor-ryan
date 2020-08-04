@@ -17,6 +17,7 @@
 
 using namespace std;
 using namespace sdbusplus;
+using namespace phosphor::logging;
 
 #define REQUIRED_NUM_ARGS 4
 #define ERR_NONE 0
