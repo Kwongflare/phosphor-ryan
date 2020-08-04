@@ -102,7 +102,7 @@ int main()
         snprintf(buff, sizeof(buff), "%s: %fV\n", itr->second.c_str(), std::get<double>(a));
         std::string data = buff;
         file << buff;
-        log<level::INFO>(data);
+    //    log<level::INFO>(data);
     }
 
     return ERR_NONE;
