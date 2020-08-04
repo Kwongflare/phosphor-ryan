@@ -7,12 +7,14 @@ project('phosphor-ryan', 'cpp',
 ])
 
 sdbusplus = dependency('sdbusplus')
+phosphor_logging = dependency('phosphor-logging')
 
 executable(
     'phosphor-ryan',
     'ryan.cpp',
     dependencies: [
       sdbusplus,
+      phosphor_logging,
     ],
     implicit_include_directories: false,
     install: true,

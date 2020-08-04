@@ -2,6 +2,8 @@
 #include <iostream>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/message/append.hpp>
+#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/elog.hpp>
 #include <variant>
 #include <fstream>
 #include <map>
@@ -99,6 +101,7 @@ int main()
         snprintf(buff, sizeof(buff), "%s: %fV\n", itr->second.c_str(), std::get<double>(a));
         std::string data = buff;
         file << buff;
+        log<level::INFO>(data);
     }
 
     return ERR_NONE;
