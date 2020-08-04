@@ -41,30 +41,6 @@ const char* ADCS_VOL_SYS1_VCCIO = "/xyz/openbmc_project/sensors/voltage/VOL_SYS1
 const char* ADCS_VOL_SYS_3_3V = "/xyz/openbmc_project/sensors/voltage/VOL_SYS_3_3V";
 const char* ADCS_VOL_SYS_V = "/xyz/openbmc_project/sensors/voltage/VOL_SYS_V";
 
-typedef enum {
-    VOL_3_3V_AUX,
-    VOL_5V_AUX,
-    VOL_BATTERY,
-    VOL_CPU0_VCORE,
-    VOL_CPU1_VCORE,
-    VOL_DIMM_ABC,
-    VOL_DIMM_DEF,
-    VOL_DIMM_GHJ,
-    VOL_DIMM_KLM,
-    VOL_PCH_1_05V,
-    VOL_PCH_1_8V,
-    VOL_PCH_VNN,
-    VOL_SYS0_VCCIO,
-    VOL_SYS1_VCCIO,
-    VOL_SYS_3_3V,
-    VOL_SYS_V
-}ADC_SENSOR;
-
-typedef struct {
-    ADC_SENSOR sensor;
-    const char* object;
-} sensor_dbus_obj_t;
-
 std::string get_time()
 {
     std::string retVal;
@@ -84,6 +60,8 @@ std::string get_time()
 int main()
 {
     map<int, string> adc_map;
+    map<int, string>::iterator itr;
+
     adc_map.insert(pair<int, string>(0, ADCS_VOL_3_3V_AUX));
     adc_map.insert(pair<int, string>(1, ADCS_VOL_5V_AUX));
     adc_map.insert(pair<int, string>(2, ADCS_VOL_BATTERY));
@@ -101,12 +79,10 @@ int main()
     adc_map.insert(pair<int, string>(14, ADCS_VOL_SYS_3_3V));
     adc_map.insert(pair<int, string>(15, ADCS_VOL_SYS_V));
 
-    map<int, string>::iterator itr;
-
-
+    char buff[100];
     const char *path = "/var/log/phosphor-ryan.txt";
     std::ofstream file(path);
-    
+
     auto b = bus::new_default_system();
     printf("Bus found\n");
 
@@ -120,12 +96,10 @@ int main()
         std::variant<double> a;
         reply.read(a);
         printf("%f\n", std::get<double>(a));
+        snprintf(buff, sizeof(buff), "%s: %fV\n", itr->second.c_str(), std::get<double>(a));
+        std::string data = buff;
+        file << buff;
     }
-    
-//    char buff[100];
-//    snprintf(buff, sizeof(buff), "%s: %s - %f", argv[5], argv[6], std::get<double>(a));
-//    std::string data = buff;
-//    file << buff;
 
     return ERR_NONE;
 
