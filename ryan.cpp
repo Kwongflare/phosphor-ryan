@@ -9,6 +9,7 @@
 #include <map>
 #include <string>
 #include <iterator>
+#include <unistd.h>
 
 /** An example dbus client application.
  **  Calls org.freedesktop.login1's ListUsers interface to find all active
@@ -89,20 +90,24 @@ int main()
     auto b = bus::new_default_system();
     printf("Bus found\n");
 
-    for (itr = adc_map.begin(); itr != adc_map.end(); itr++)
+    while(1)
     {
-        auto m = b.new_method_call(ADC_SENSOR_SERVICE, itr->second.c_str(),
-                DBUS_PROPERTIES_INTF, PROPERTIES_GET);
-        m.append(PHOSPHOR_SENSOR_VAL_INTF, "Value");
-        printf("message created\n");
-        auto reply = b.call(m);
-        std::variant<double> a;
-        reply.read(a);
-        printf("%f\n", std::get<double>(a));
-        snprintf(buff, sizeof(buff), "%s: %fV\n", itr->second.c_str(), std::get<double>(a));
-        std::string data = buff;
-        file << buff;
-        log<level::INFO>(buff);
+        for (itr = adc_map.begin(); itr != adc_map.end(); itr++)
+        {
+            auto m = b.new_method_call(ADC_SENSOR_SERVICE, itr->second.c_str(),
+                    DBUS_PROPERTIES_INTF, PROPERTIES_GET);
+            m.append(PHOSPHOR_SENSOR_VAL_INTF, "Value");
+            printf("message created\n");
+            auto reply = b.call(m);
+            std::variant<double> a;
+            reply.read(a);
+            printf("%f\n", std::get<double>(a));
+            snprintf(buff, sizeof(buff), "%s: %fV\n", itr->second.c_str(), std::get<double>(a));
+            std::string data = buff;
+            file << buff;
+            log<level::INFO>(buff);
+        }
+        sleep(120);
     }
 
     return ERR_NONE;
